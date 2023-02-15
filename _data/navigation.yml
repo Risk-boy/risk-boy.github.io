@@ -1,9 +1,11 @@
 # main links
 main:
+  - title: "Hone"
+    url: /index.html
   - title: "Category"
     url: /categories/
-  - title: "Tags"
-    url: /tags/
+  # - title: "Tags"
+  #   url: /tags/
   # - title: "Sample Collections"
   #   url: /collection-archive/
   # - title: "Sitemap"
