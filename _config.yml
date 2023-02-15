@@ -111,7 +111,7 @@ author:
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      url: "fogvhdooz@gmail.com"
+      url: "mailto:fogvhdooz@gmail.com"
     - label: "Github"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Risk-boy"
