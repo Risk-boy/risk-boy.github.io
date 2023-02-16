@@ -202,6 +202,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jemoji
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -264,4 +265,7 @@ defaults:
       related: false
       mathjax: true
       sidebar_main: true
+      toc: true
+      toc_icon: "bars"
+      toc_sticky: true
 
