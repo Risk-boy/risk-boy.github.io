@@ -1,10 +1,10 @@
 ---
-title: "c++ 공부 일지"
+title: "c언어 공부 일지"
 layout: archive
-permalink: categories/cpp
+permalink: categories/c
 author_profile: true
 sidebar_main: true
 ---
 
-{% assign posts = site.categories.cpp %}
+{% assign posts = site.categories.c %}
 {% for post in posts %} {% include archive-single2.html type=page.entries_layout %} {% endfor %}
