@@ -34,6 +34,13 @@
         <span class="nav__sub-title">AI</span>
           <ul>
             {% for category in site.categories %}
+              {% if category[0] == "dl" %}
+                <li><a href="/categories/dl" class="">Deep Learning ({{category[1].size}})</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <ul>
+            {% for category in site.categories %}
               {% if category[0] == "boostcamp" %}
                 <li><a href="/categories/boostcamp" class="">boostcamp ({{category[1].size}})</a></li>
               {% endif %}
