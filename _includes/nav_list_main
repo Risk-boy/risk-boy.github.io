@@ -34,7 +34,7 @@
         <span class="nav__sub-title">AI</span>
           <ul>
             {% for category in site.categories %}
-              {% if category[0] == "dl" %}
+              {% if category[0] == "DL" %}
                 <li><a href="/categories/dl" class="">Deep Learning ({{category[1].size}})</a></li>
               {% endif %}
             {% endfor %}
