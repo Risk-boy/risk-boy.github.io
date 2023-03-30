@@ -70,7 +70,7 @@ MF(Matrix Factorization)의 한계를 지적하여 신경망 기반의 구조를
 - Output Layer
   - target을 0 또는 1을 예측하는 형태로 구성하기 위해 activation function으로는 Logistic이나 Probit함수 사용
   - user와 item사이의 관련도
-    - $\hat{y}_{ui}=\phi_{out}(\phi_X(\cdot\cdot\cdot\phi_2(\phi_1(P^Tv_u,Q^Tv_i))\cdot\cdot\cdot)) , \hat{y}_{ui}\in[0, 1]$
+    - $$\hat{y}_{ui}=\phi_{out}(\phi_X(\cdot\cdot\cdot\phi_2(\phi_1(P^Tv_u,Q^Tv_i))\cdot\cdot\cdot)) , \hat{y}_{ui}\in[0, 1]$$
 
 **모델(최종 모델)**
 
@@ -141,6 +141,7 @@ extreme multiclass classification
 $$
 P(w_t=i|U,C)=\frac{e^{v_{i}u}}{\sum_{j\in V}e^{v_{j}u}}
 $$
+
 
 **모델**
 
