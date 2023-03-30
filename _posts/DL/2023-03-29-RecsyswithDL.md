@@ -137,9 +137,11 @@ extreme multiclass classification
 수백만개의 비디오가 존재하기 때문에 <span style="color:red; font-weight:bold">Extreme</span>
 
 마지막에는 Softmax function을 사용하는 분류 문제
+
 $$
 P(w_t=i|U,C)=\frac{e^{v_{i}u}}{\sum_{j\in V}e^{v_{j}u}}
 $$
+
 **모델**
 
 **Watch Vector and Search Vector**
@@ -169,6 +171,7 @@ $$
 - 유저를 input으로 하여 상위 N개의 비디오를 추출
 
 - 학습 후에 유저 벡터($u$)와 모든 비디오 벡터($v_j$)의 내적을 계산
+  
   $$
   P(w_t=i|U,C)=\frac{e^{v_{i}u}}{\sum_{j\in V}e^{v_{j}u}}
   $$
@@ -189,23 +192,22 @@ $$
 **모델**
 
 - user actions feature 사용
-
   - 유저가 특정 채널에서 얼마나 많은 영상을 보았는지
   - 유저가 특정 주제의 동영상을 본 지 얼마나 지났는지
   - 영상의 과거 시청 여부 등을 입력
 
 - DL 구조보다는 도메인 전문가의 역량이 좌우하는 파트
-
   - 많은 Feature Selection / Engineering이 필요!
 
 - 네트워크를 통과한 뒤 비디오가 실제로 시청될 확률로 매핑
+  
   $$
   P(watch)\in [0, 1]
   $$
+
   *시청 여부만을 맞히는 CTR을 예측
 
 - Loss Function
-
   - 단순 binary가 아닌 weighted cross-entropy loss사용
   - 비디오 시청 시간을 가중치로 줌
   - 낚시성/광고성 콘텐츠를 업로드하는 어뷰징(abusing)을 감소시키는 효과
@@ -271,7 +273,6 @@ AE를 CF에 적용하여 기본 CF 모델에 비해 Representation과 Complexity
 **모델**
 
 - 아이템과 유저 중, 한 번에 하나에 대한 임베딩을 진행
-
 - $r^{(i)}$: 아이템 $i$의 Rating Vector
 - $R_{ui}:$ 유저 $u$의 아이템 $i$에 대한 Rating
 - $V$: 인코더 가중치 행렬, $W$: 디코더 가중치 행렬 
@@ -281,10 +282,9 @@ AE를 CF에 적용하여 기본 CF 모델에 비해 Representation과 Complexity
 **학습**
 
 - 기존의 rating과 reconstructed rating의 RMSE를 최소화하는 방향으로 학습
-
 - 관측된 데이터에 대해서만 역전파 및 파라미터 업데이트 진행
-
 - $S$: 점수 벡터 $r$의 집합, $f, g:$ 활성 함수(Sigmoid, Identity Function)
+  
   $$
   \min_{\theta}\sum_{r\in S}||r-h(r;\theta)||_2^2 \\ 
   h(r;\theta) = f(W\cdot g(Vr + \mu) + b)
@@ -327,15 +327,12 @@ Denoising Autoencoder를 CF에 적용하여 Top-N 추천에 활용한 논문
   ($\tilde{y}_u$는 $q$의 확률에 의해 0으로 drop-out된 벡터)
 
 - 개별 유저에 대해서 $V_u$를 학습(Collaborative)
-
   - 유저에 따른 특징을 해당 파라미터가 학습하고 Top N 추천에 사용
-
 - 인코더로 latent representation $z_u$를 생성하고 디코더로 regenerate
 
-  $z_u=h(W^{\top} \tilde{y}_u + V_u + b)  \ \ \ \ \ \ \ \tilde{y}_{ui}=f(W_i^{'\top}z_u + b_i^{'})$
+  $z_u=h(W^{\top} \tilde{y}_u + V_u + b)  \ \ \ \ \ \ \  \tilde{y}_{ui}=f(W_i^{'\top}z_u + b_i^{'})$
 
 - $\tilde{y}_u$ 를 사용해서 input값을 noise하게 바꿈
-
 - $V_u$를 추가하여 유저별 특징을 학습하게 하였음
 
 
