@@ -9,11 +9,11 @@ date: 2023-03-29
 last_modified_at: 2023-03-29
 ---
 
-# 6강 Recommender System with Deep Learning (1)
 
-## 1. Recommender System with DL
 
-### 1.1 추천 시스템과 딥러닝
+# 1. Recommender System with DL
+
+## 1.1 추천 시스템과 딥러닝
 
 **추천 시스템에서 딥러닝을 활용하는 이유**
 
@@ -29,17 +29,17 @@ last_modified_at: 2023-03-29
 4. Flexibility
    - Tensorflow, PyTorch 등 다양한 DL 프레임워크 사용 가능!
 
-## 2. Recommender System with MLP
+# 2. Recommender System with MLP
 
-### 2.1 Multi-Layer Perceptron
+## 2.1 Multi-Layer Perceptron
 
-**다층 퍼셉트론(Multi-Layer Perceptron**
+**다층 퍼셉트론(Multi-Layer Perceptron)**
 
 - 퍼셉트론으로 이루어진 layer 여러 개를 순차적으로 이어 놓은 feed-forward neural network
 
 - 선형 분류만으로 풀기 어려웠던 문제를 비선형적으로 풀 수 있게됨
 
-### 2.2 Neural Collaborative Filtering
+## 2.2 Neural Collaborative Filtering
 
 **Neural Collaborative Filtering**
 
@@ -95,7 +95,7 @@ MovieLens, Pinterest 데이터셋에 대하여 NCF의 추천 성능이 기존 MF
 
 성능향상이 크게 되었다기 보다는 MLP를 기존 MF에 처음 추가한 것에 의의가 있음!
 
-### 2.3 YouTube Recommendation
+## 2.3 YouTube Recommendation
 
 **Deep Neural Networks for YouTube Recommendations**
 
@@ -228,9 +228,9 @@ $$
   - Rich Feature: CG에서 사용한 피쳐 외에 더 많은 피쳐를 사용하여 Ranking
   - 단순 CTR 예측이 아닌 Expected Watch Time을 예측
 
-## 3. Recommender System with AE
+# 3. Recommender System with AE
 
-### 3.1 Autoencoder
+## 3.1 Autoencoder
 
 **오토인코더(Autoencoder, AE)**
 
@@ -253,7 +253,7 @@ $$
 
 
 
-### 3.2 AutoRec
+## 3.2 AutoRec
 
 **AutoRec: Autoencoders Meet Collaborative Filtering**
 
@@ -302,7 +302,7 @@ AE를 CF에 적용하여 기본 CF 모델에 비해 Representation과 Complexity
 
 
 
-### 3.3 CDAE
+## 3.3 CDAE
 
 **Collaborative Denoising Auto-Encoders for Top-N Recommender Systems**
 
