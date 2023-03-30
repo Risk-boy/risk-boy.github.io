@@ -70,7 +70,7 @@ MF(Matrix Factorization)의 한계를 지적하여 신경망 기반의 구조를
 - Output Layer
   - target을 0 또는 1을 예측하는 형태로 구성하기 위해 activation function으로는 Logistic이나 Probit함수 사용
   - user와 item사이의 관련도
-    - $$\hat{y}_{ui}=\phi_{out}(\phi_X(\cdot\cdot\cdot\phi_2(\phi_1(P^Tv_u,Q^Tv_i))\cdot\cdot\cdot)) , \hat{y}_{ui}\in[0, 1]$$
+    $$\hat{y}_{ui}=\phi_{out}(\phi_X(\cdot\cdot\cdot\phi_2(\phi_1(P^Tv_u,Q^Tv_i))\cdot\cdot\cdot)) , \hat{y}_{ui}\in[0, 1]$$
 
 **모델(최종 모델)**
 
@@ -81,6 +81,7 @@ Neural Matrix Factorization
   *GMF: Generalization Matrix Factorization
 
 - GMF와 MLP는 서로 다른 embedding layer를 사용
+
   $$
   \begin{aligned}
   &\phi^{GMF}=(p_u^{G})^Tq_i^G \\ &\phi^{MLP}=\phi_X(\cdot\cdot\cdot\phi_2(\phi_1(p_u^M,q_i^M))\cdot\cdot\cdot) \\
@@ -331,7 +332,7 @@ Denoising Autoencoder를 CF에 적용하여 Top-N 추천에 활용한 논문
   - 유저에 따른 특징을 해당 파라미터가 학습하고 Top N 추천에 사용
 - 인코더로 latent representation $z_u$를 생성하고 디코더로 regenerate
 
-  $z_u=h(W^{\top} \tilde{y}_u + V_u + b)  \ \ \ \ \ \ \  \tilde{y}_{ui}=f(W_i^{'\top}z_u + b_i^{'})$
+  $$z_u=h(W^{\top} \tilde{y}_u + V_u + b)  \ \ \ \ \ \ \  \tilde{y}_{ui}=f(W_i^{'\top}z_u + b_i^{'})$$
 
 - $\tilde{y}_u$ 를 사용해서 input값을 noise하게 바꿈
 - $V_u$를 추가하여 유저별 특징을 학습하게 하였음
