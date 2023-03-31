@@ -133,7 +133,7 @@ MovieLens, Pinterest 데이터셋에 대하여 NCF의 추천 성능이 기존 MF
 
 extreme multiclass classification
 
-특정시간(t)dp 유저 U가 C라는 context를 가지고 있을 때 각각의 비디오(i)를 볼 확률을 계산
+특정시간(t)에 유저 U가 C라는 context를 가지고 있을 때 각각의 비디오(i)를 볼 확률을 계산
 
 수백만개의 비디오가 존재하기 때문에 <span style="color:red; font-weight:bold">Extreme</span>
 
