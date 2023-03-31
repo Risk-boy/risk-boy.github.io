@@ -78,7 +78,7 @@ Neural Matrix Factorization
 
 - GMF와 MLP를 앙상블(ensemble)하여 사용 -> 각각의 장점은 살리고 단점은 보완
 
-  *GMF: Generalization Matrix Factorization
+  *GMF: Generalized Matrix Factorization
 
 - GMF와 MLP는 서로 다른 embedding layer를 사용
 
