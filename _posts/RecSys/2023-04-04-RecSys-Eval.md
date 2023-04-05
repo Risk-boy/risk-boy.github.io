@@ -1,5 +1,5 @@
 ---
-title: "01.Recommendation System Evaluation"
+title: "Recommendation System Evaluation"
 categories:
   - RecSys
 tags:
@@ -7,7 +7,7 @@ tags:
 
 
 date: 2023-04-04
-last_modified_at: 2023-04-04
+last_modified_at: 2023-04-05
 ---
 
 # 1. 개요

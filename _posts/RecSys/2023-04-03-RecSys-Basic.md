@@ -1,5 +1,5 @@
 ---
-title: "00.Recommendation System Basic"
+title: "Recommendation System Basic"
 categories:
   - RecSys
 tags:
@@ -7,7 +7,7 @@ tags:
 
 
 date: 2023-04-03
-last_modified_at: 2023-04-03
+last_modified_at: 2023-04-05
 ---
 # 1. 개요
 
