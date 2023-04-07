@@ -1,5 +1,5 @@
 ---
-title: "Context-Aware Recommendation"
+title: "Context-aware Recommendation"
 categories:
   - RecSys
 tags:
@@ -30,13 +30,12 @@ last_modified_at: 2023-04-06
 
 
 
-**Context - Aware Recommender System**
+**Context - aware Recommender System**
 
 - Context: 맥락
   - 맥락을 이해한다 = 유저의 상황을 이해한다
-  - 유저와 아이템과 관련있지만, 상호관계를 설명하지는 않는다
   - 개체(유저 또는 아이템)의 상황을 설명하는 특징적인 정보를 뜻함
-- Context-Aware Recommender System = 맥락기반 추천시스템
+- Context-aware Recommender System = 맥락기반 추천시스템
   - 맥락(유저의 상황)을 이해한 추천 시스템
   - 유저와 아이템의 단순 상호관계 뿐만 아니라 상황 정보도 포함한 포괄적인 추천시스템
 
@@ -48,11 +47,19 @@ $$
 R:user\ \times \ item \rightarrow rating
 $$
 
-- Context-Aware Recommender System
+- Context-aware Recommender System
+
+context 정보는 서비스에 따라 데이터 형태가 다르기때문에 feature들을 모두 담을 수 있는 **general**한 모델이 설계되어야 한다!  
 
 $$
-R:user\ \times \ item\ \times \ \color{red}context \color{black} \rightarrow rating
+R:user\ \times \ item\ \times \ \color{red}{context} \color{black} \rightarrow rating
 $$
+
+![car_vector](./../../assets/images/captured/RecSys/context-aware.png)
+
+![car_cube](./../../assets/images/captured/RecSys/car.png)
+
+
 
 # 2. 특징
 
@@ -129,7 +136,8 @@ $$
 # 4. Click-Through Rate Prediction
 
 - CTR 예측: 유저가 주어진 아이템을 클릭할 확률을 예측하는 문제
-  - 예측해야 하는 y값은 클릭여부(0 또는 1)이므로 이진분류 문제에 해당
+  - 추천시스템에서 online A/B test를 할때 가장 많이 쓰이는 지표 중 하나
+  - 예측해야 하는 y값은 클릭여부(0 또는 1)이므로 **이진분류 문제**에 해당
   - 모델에서 출력한 값을 시그모이드 함수에 통과시켜 (0, 1) 사이의 예측 CTR 값을 얻어냄
 - 광고에서 주로 사용
   - 광고 클릭 횟수 = 돈! :money_with_wings: 
@@ -147,6 +155,8 @@ $$
 logit(P(y=1|x))=(w_0+\sum_{i=1}^nw_ix_i), \ w_i\in R
 $$
 
+변수들간의 상호작용을 모델에 반영할 수 없음
+
 **Polynomial Model**
 
 $$
@@ -162,6 +172,7 @@ $$
 - Dense Feature: 벡터로 표현했을 때 비교적 작은 공간에 밀집되어 분포하는 수치형 변수
   - ex) 유저-아이템 평점, 기온, 시간 등
 - Sparse Feature: 벡터로 표현했을 때 비교적 넓은 공간에 분포하는 범주형 변수
+  - one-hot encoding 또는 multi-hot encoding으로 표현
   - ex) 요일, 분류, 키워드, 태그 등
 
 **CTR 예측 문제에 사용되는 데이터의 구성 요소는 대부분 Sparse Feature!**
@@ -207,9 +218,15 @@ $$
 - $\sum_{i=1}^nw_ix_i:$ modeling $ith \  weight$
 - $\sum_{i=1}^n \sum_{j=i+1}^n<v_i,v_j>x_ix_j:$ Factorization term, Pairwise feature interaction 
 
-
+앞에 Polynomial Model과 비교했을 때 k 차원의 벡터를 factorization시켜 좀 더 일반화 시켰음!
 
 ## 5.3 FM 활용
+
+![feature_x](./../../assets/images/captured/RecSys/feature_x.png)
+
+유저 A의 ST에 대한 평점 예측하기
+- $v_A:$ 유저 B, C가 유저 A와 공유하는 SW의 평점 데이터를 통해 학습
+- $v_{ST}:$ 유저 B, C의 ST에 대한 평점 데이터를 통해 학습
 
 **FM 장점**
 
@@ -218,7 +235,7 @@ $$
   - 선형 복잡도 $O(kn)$를 가지므로 수십억개의 학습 데이터에 대해서도 빠르게 학습
   - 모델의 학습에 필요한 파라미터 개수도 선형적으로 비례
 - vs. Matrix Factorization
-  - 여러 예측 문제(회귀 / 분류 / 랭킹)에 모두 활용 가능한 범용적인 지도학습 모델
+  - 여러 예측 문제(회귀 / 분류 / 랭킹)에 모두 활용 가능한 범용적인 지도학습 모델(General Predictor)
   - 유저, 아이템 ID 외에 다른 부가 정보들을 모델의 피쳐로 사용 가능
   - 어떠한 실수값으로 된 피쳐 벡터에 대해서도 적용 가능
 
@@ -253,10 +270,9 @@ $$
 ## 6.1 개요
 
 - Field-aware Factorization Machine(FFM)은 FM을 발전시킨 모델로서 PITF 모델에서 아이디어를 얻음
-  - PITF: Pairwise Interaction Tensor Factorization
+  - PITF: Pairwise Interaction Tensor Factorization(MF를 확장시킨 모델)
   - PITF에서는 $(user,item,tag)$ 3개의 필드에 대한 CTR을 예측하기 위해 $(user,item),(item,tag),(user,tag)$ 각각에 대해서 서로 다른 latent factor를 정의하여 구함
 
- 
 
 **PITF의 아이디어를 일반화하여 여러개의 필드에 대해서 latent factor를 정의한 것이 FFM**
 
@@ -265,7 +281,7 @@ $$
 **FFM의 특징**
 
 - 입력 변수를 필드로 나누어 필드별로 서로 다른 latent factor를 가지도록 factorize함
-  - 기존의 FM은 하나의 변수에 대해서 k개로 factorize했으나 FFM은 f개의 필드에 대해 각각 k개로 factorize함
+  - 기존의 FM은 하나의 변수 $x$에 대해서 k개로 factorize했으나 FFM은 f개의 필드에 대해 각각 k개로 factorize함
 - Field는 모델을 설계할 때 함께 정의되며, 같은 의미를 갖는 변수들의 집합으로 설정
   - 유저: 성별, 디바이스, 운영체제
   - 아이템: 광고, 카테고리
@@ -281,11 +297,13 @@ $$
 \hat{y}(x)=w_0+\sum_{i=1}^nw_ix_i+\sum_{i=1}^n \sum_{j=i+1}^n<v_{i,f_j},v_{j,f_i}>x_ix_j \\ w_0,w_i \in R, \ v_{i,f}\in R^k
 $$
 
-
+곱해지는 상대의 필드를 고려하여 factorization
 
 **FM / FFM 성능 비교**
 
-FFM이 전반적으로 성능이 좋지만, 어떤 데이터셋은 필드를 사용하지 않는 것이 더 적합할 수도 있음
+데이터의 표현방식에 따라 FM, FFM 성능이 다름!
+
+어떤 데이터셋은 필드를 사용하지 않는 것이 더 적합할 수도 있음
 
 따라서 이러한 데이터셋에 FFM을 적용하면 Overfitting / Underfitting의 가능성 존재
 
@@ -314,7 +332,8 @@ FFM이 전반적으로 성능이 좋지만, 어떤 데이터셋은 필드를 사
 - 앙상블(Ensemble) 기법의 일종
   - 모델의 편향에 따른 예측 오차를 줄이기 위해 여러 모델을 결합하여 사용하는 기법
 
-- 의사결정 나무(decision tree)로 된 weak learner 들을 **연속적**으로 학습하여 결합하는 방식
+- 의사결정 나무(decision tree)로 된 weak learner들을 **연속적**으로 학습하여 결합하는 방식
+  - weak learner: 정확도와 복잡도가 낮은 간단한 분류기 
   - 연속적: 이전 단계의 weak learner가 취약했던 부분을 위주로 데이터를 샘플링하거나 가중치를 부여해 다음 단계의 learner를 학습한다는 의미
 - Boosting 기반 모델
   - AdaBoost (Adaptive Boosting)
@@ -327,12 +346,14 @@ FFM이 전반적으로 성능이 좋지만, 어떤 데이터셋은 필드를 사
 
 > gradient descent를 사용하여 loss function이 줄어드는 방향(negative gradient)으로 weak learner들을 반복적으로 결합함으로써 성능을 향상시키는 Boosting 알고리즘
 
-- 이전 단계의 weak learner까지의 residual을 계산하여, 이를 예측하는 다음 weak learner를 학습함
+- 파라미터가 아닌 학습 learner 자체로 미분을 수행
+- 이전 단계의 weak learner까지의 residual을 계산하여, 이를 예측하는 다음 weak learner를 학습함(통계학적 관점)
+- 회귀 문제에서는 예측 값으로 residual을 그대로 사용하고 분류 문제에서는 log(odds) 값을 사용
 - 손실 함수 값이 일정 수준 이하로 떨어지거나 leaf node에 속하는 데이터의 수가 적어지면 멈춤
 
 **장점**
 
-- 대체로 random forest보다 나은 성능을 보임
+- 대체로 Bagging을 사용하는 random forest보다 나은 성능을 보임
 
 **단점**
 
