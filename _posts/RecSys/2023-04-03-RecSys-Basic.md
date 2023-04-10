@@ -7,9 +7,25 @@ tags:
 
 
 date: 2023-04-03
-last_modified_at: 2023-04-05
+last_modified_at: 2023-04-10
 ---
 # 1. 개요
+
+**추천 시스템의 정의**
+- 정보 필터링(IF) 기술의 일종으로 특정 사용자가 관심을 가질 만한 정보를 추천하는 것
+- 사용자의 행동 데이터와 아이템 데이터를 분석하여 가장 적절한 아이템을 추천하는 시스템
+
+**추천시스템이 필요한 이유**
+
+1. 더 많은 아이템을 판매
+2. 더 다양한 아이템을 판매
+3. 소비자 만족도 증가
+4. 충성도 높은 고객 증가
+5. 고객의 니즈 파악
+6. 비용 절감
+
+
+**Pull and Push**
 
 **search(의도를 갖고 상품을 찾는 행위)**
 
@@ -57,17 +73,6 @@ last_modified_at: 2023-04-05
 - SNS 친구 추천(인스타그램)
   - 수천만 혹은 수십억 명의 유저들 가운데 내가 알만한 사람들을 추천
   - 유명한 연예인이나 셀럽대신 나의 친구의 친구 등을 추천
-
-
-
-**추천시스템이 필요한 이유**
-
-1. 더 많은 아이템을 판매
-2. 더 다양한 아이템을 판매
-3. 소비자 만족도 증가
-4. 충성도 높은 고객 증가
-5. 고객의 니즈 파악
-
 
 
 # 2. 사용 데이터
@@ -184,9 +189,11 @@ last_modified_at: 2023-04-05
   - Context-aware Reommendation System
   - Location-based Reommendation System
   - Real-time or Time-Sensitive Reommendation System
+
 - **Community-based Recommendation**
   - 사용자의 친구 또는 사용자가 속한 커뮤니티의 선호도를 바탕으로 추천
   - SNS 등의 뉴스피드 또는 SNS 네트워크 데이터 등을 활용
+
 - **Knowledge-based Recommendation**
   - **특정 도메인 지식을 바탕**으로 아이템의 features를 활용한 추천
   - Case-based Recommendation
