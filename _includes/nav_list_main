@@ -71,7 +71,9 @@
     <ul>
       {% for category in site.categories %} {% if category[0] == "RISK" %}
       <li>
-        <a href="/categories/risk" class="">C ({{ category[1].size }})</a>
+        <a href="/categories/risk" class=""
+          >Credit Risk ({{ category[1].size }})</a
+        >
       </li>
       {% endif %} {% endfor %}
     </ul>
