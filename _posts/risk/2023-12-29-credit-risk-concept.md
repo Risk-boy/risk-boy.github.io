@@ -480,7 +480,7 @@ $$
 
 - Impact of interest rate and Inflation, etc
 
-#### Recovery rates
+#### Recovery rate
 
 - Portfolio will say how many bonds default
 - But what will the loss be for each?
