@@ -287,3 +287,235 @@ last_modified_at: 2023-12-29
 1. Share Price: $as \ S_0\uparrow,\ C\uparrow\ P\downarrow$
 
 2. Strike Price: $as \ K\uparrow,\ C\downarrow\ P\uparrow$
+
+3. Time to expiry: $as \ T\uparrow,\ C\uparrow\ P\downarrow$
+
+   - Shares have a positive trend and this favors the call but hurts the put
+
+4. Volatility of share: $as \ \sigma\uparrow,\ C\uparrow\ P\uparrow$
+   - Options have limited downside but unlimited upside
+   - More risk makes both of them more valuable
+5. Risk free rate: $as \ r\uparrow,\ C\uparrow\ P\downarrow$
+   - Higher rate makes share grow faster
+   - Favors the call but hurts the put
+
+### Merton Model
+
+#### History
+
+- Robert Cox Merton
+- Black Scholes Model
+- Nobel Prize
+- LTCM
+- Robert Jarrow Student
+- KMV extend Model
+- Moody -> LossCalc / RiskCalc
+
+#### IDEA
+
+- Company is financed by Equity & Debt
+- Equity: Vote & Unlimited Potential Return
+- Debt: Fixed Return & Greater Security
+- Assumption: No Dividends & Zero Coupon Bond
+
+#### Formula
+
+- $Value(0) = Equity(0) + Debt(0)$
+- $Debt(T)=Min(Debt(0)*(1+i)^T,Value(T))$
+- $Equity(T)=Max(Value(T)-Debt(T),0)$
+  - Equity is limited
+- If a company does badly -> $Debt(T)=Value(T), \ Equity(T)=0$
+
+- Equity is like a Long Call on a company
+- Debt is like a Short Put on a company
+
+#### Related to Black Scholes Model
+
+- $Equity(0)=C\ (Premium\ for\ a\ Call\ Option)$
+- $Debt(T)=K\ (Strike\ Price)$
+
+- $i*Debt(0)=P\ (Premium\ for\ a\ Put\ Option)$
+- $Value(T)=S_T\ (Share\ Price\ at\ Time\ T)$
+- $Value(0)=S_0\ (Share\ Price\ at\ Time\ 0)$
+
+> Note Value(t) is Company's Assets, Not Share Price
+>
+> Just in Merton Model, Assets take place of Share Price in BS model
+>
+> Also be aware, difficult to know Asset value of all times
+>
+> We assume, we know volatility of the Asset value
+
+- $Equity(0)=Value(0)N(d_1)-Debt(T)e^{-rT}N(d2)$
+- $i*Debt(0)=Debt(T)e^{-rT}N(-d_2)-Value(0)N(-d_1)$
+- $P(S_T<K)=N(-d_2)$
+- Thus Probability of Default at Time T is $P(Value(T) \le Debt(T)) = N(-d_2)$
+
+- $Debt(0)=Debt(T)e^{-rT}-[Debt(T)e^{-rT}N(-d_2)- Value(0)N(-d_1)]$
+- $Debt(0)=Debt(T)e^{-bT}\ (where\ b\ is\ implied\ interest\ rate)$
+- $Credit\ Spread\ is\ b-r$
+
+- Merton Model tells us
+  - Probability of Default
+  - The Company's Debt of various times
+  - The Credit Spread
+
+#### Drawbacks of Merton Model
+
+1. Assuming Frictionless Market
+2. Deterministic Risk free rate
+3. Value of the company assets follow log Normal distribution with fixed growth & volatility
+4. Value is an obervable traded security
+5. Debt is a Zero Coupon Bond
+6. Debt has only one Default Opportunity
+7. Default only results in Liquidation
+
+### KMV Model
+
+- Extends the Merton model idea
+- Probability of Default = $P(Value(T)<Debt(T))$
+
+- Introduces the Distance to Default(DD)
+  - Number of standard of deviation that the company's assets have to fall in value before they breach the Debt(T) threshold
+- $DD_0=\frac{Value(0)-Debt}{\sigma_{Value} \ Value(0)}$
+
+- Use empirical data on company defaults and how these defaults link with the DD
+- Can estimate PD over the coming year
+- Normally we can't observe Value nor $\sigma_{Value}$
+- However `Ito's Lemma` says that
+
+$$
+\sigma_sS_0=N(d_1)\sigma_{Value}Value(0) \\
+\sigma_s is\ volatility\ of\ share\ price
+$$
+
+- Solve 2 simultaneous equations to get 2 numbers(above equation & bsm)
+
+### KMV Model vs Merton Model
+
+- KMV allows for Coupon Paying Debt -> allows for more complex Liability Structures
+- Value isn't assumed to be observable, derived from price of shares
+- Both are Structural Models, depend on share price. Thus market sentiment can have significant impact on results
+
+### Jarrow - Turnbull Model
+
+#### History
+
+- Robert Jarrow was a student of Robert Merton
+- Merton used option pricing theory
+- Jarrow used markov process
+
+- Both aim to calculate probability of default
+- Credit Rating Agencies used Merton Model(KMV version)
+- Jarrow uses credit ratings
+- Jarrow is a sort of extension to Merton
+
+#### IDEA
+
+![Jarrow-Turnbull](./../../assets/images/captured/Risk/Jarrow-Turnbull.jpg)
+
+- Each Non-default state can move to every other state
+- To estimate rates, use historical data
+
+##### Results
+
+1. Time until default, allowing ofr credit deterioration
+2. Probability of losing **Investment Grade** status
+
+### Credit Migration Model Drawbacks
+
+- Jarrow-Turnbull Model is an example
+- See how Credit Ratings change over time
+- Doesn't explicitly need share information
+
+1. Time-homogeneity is not realistic
+
+   - Studies show that a recently downgraded bond is more likely to downgrade in the future than one with same rating that has been there for longer
+   - Agencies don't want to shock the market. There is also their outlook that some models dont't consider
+
+2. Granularity vs Lack of data
+   - More states like Triple A- negative outlook results in less data to estimate transitions. But combining states loses detail & accuracy
+3. Are past default rates a good indication of future default rates?
+
+   - This idea works for mortality rates. It doesn't work for investment fund performance. Is it likely to work for credit risk?
+
+4. Are Credit Ratings Credible?
+
+- 2008 Crisis suggested they had conflicts of interest
+- What about economic factors, or are they contain in ratings?
+- What if two agencies have different material ratings?
+
+5. Not all organizations have a credit rating
+
+### Credit Portfolio Models
+
+- Value at Risk Framework
+
+#### Value at Risk
+
+- 3 Dimensions
+  - Frequency
+  - Severity
+  - Duration
+- There is a 95% chance(**Frequency**) that we won't lose more than $100 million(**Severity**) over the next 10 days(**Duration**)
+
+#### Multivariate Structural Models
+
+- Merton or KMV approach
+- Multivariate t-distribution & correlation matrix
+- Copula to allow correlations to change (more realistic)
+
+#### Multivariate Migration Model
+
+- Credit Metric
+
+#### Actuarial Models
+
+- CreditRisk+
+- Poisson Approach
+- Survival Models with Gumbel Copula
+- Common Shock Model with Marshall-Olkin Copula
+
+#### Economical Models
+
+- Impact of interest rate and Inflation, etc
+
+#### Recovery rates
+
+- Portfolio will say how many bonds default
+- But what will the loss be for each?
+- Same approach as loss distribution
+- But distribution fitted will be different
+
+### 10 ways of Credit Risk Management
+
+1. **Collateral**
+   - Lowers default rate
+   - Improves recovery rate
+   - But asset has low marketability
+2. **Securitization**
+   - SPV off balance sheet
+   - Convert Credit Risk to Market Risk
+   - Regulation Arbitrage
+   - off load Credit Exposure to Markets
+3. **Two Team Approach**
+   - Front office sells loans
+   - Back office checks loans
+   - Incentives vs Conflict
+4. **Diversification**
+   - Business, Mortgage, etc
+   - Region
+   - Many Small vs Few Big
+5. **Soft Approaches**
+   - Letters to rewind payment
+   - Debt Collectors
+   - Restructuring terms
+6. **Hedging**
+   - offset Interest Rate exposure
+   - Interest Rate Swaps
+7. **Derivatives**
+   - Credit Default Swaps (Insurance)
+   - Use to change Risk Profile
+8. **Buy and Sell Loan Books**
+9. **Stricter Underwriting Requirement**
+10. **Dispose as soon as Investment Grade Status is lost**
