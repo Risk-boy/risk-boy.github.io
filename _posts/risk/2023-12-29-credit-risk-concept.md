@@ -77,7 +77,7 @@ last_modified_at: 2023-12-29
 
 - **Coherent Axioms**
 
-  - Monotonicity: $if\ x_1 \lt x_2\ than\ f(x_1) \lt f(x_2)$
+  - Monotonicity: $if\ x_1 \lt x_2,\ then\ f(x_1) \lt f(x_2)$
 
   - Subadditivity: $f(x_1+x_2) \le f(x_1)+f(x_2)$
 
