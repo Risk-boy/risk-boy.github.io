@@ -4,7 +4,7 @@ title: "Theory of Credit Risk Model"
 
 categories:
 
-- RSIK
+- RISK
 
 toc: true
 toc_sticky: true
